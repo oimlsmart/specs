@@ -54,10 +54,13 @@ jobs:
           gem build metanorma-oiml.gemspec
           gem install metanorma-oiml-*.gem
 
-      - name: Generate OIML STS outputs alongside document.html
+      - name: Generate site HTML (metanorma-document) and OIML STS outputs
         run: |
           doc=_site/documents/sts-guidelines
-          # bypass the image's bundler shim; the gem was installed system-wide
+          # bypass the image's bundler shim; gems were installed system-wide
+          env -u BUNDLE_GEMFILE -u RUBYOPT ruby -r metanorma/document -e \
+            'doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+            "$doc/document.presentation.xml" "$doc/document.html"
           env -u BUNDLE_GEMFILE -u RUBYOPT oiml-sts convert \
             "$doc/document.presentation.xml" "$doc/document.sts.xml"
           env -u BUNDLE_GEMFILE -u RUBYOPT ruby -r metanorma/oiml/sts -e \

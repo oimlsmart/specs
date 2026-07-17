@@ -11,11 +11,22 @@ bundle exec metanorma compile sources/sts-guidelines/document.adoc
 ```
 
 Outputs (in `sources/sts-guidelines/`): `document.xml`,
-`document.presentation.xml`, `document.html`, `document.pdf`, `document.rxl`.
+`document.presentation.xml`, `document.pdf`, `document.rxl`.
 
 The `:mn-document-class: oiml` flavor is provided by the released
 `metanorma-taste` gem (a `metanorma-core` dependency), so the document
 compiles with the standard Metanorma toolchain — no unreleased gems needed.
+
+### Site HTML (metanorma-document)
+
+The HTML for the site is generated from the presentation XML with the
+`metanorma-document` typed-model renderer (not the isodoc HTML):
+
+```sh
+bundle exec ruby -r metanorma/document -e \
+  'doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+  sources/sts-guidelines/document.presentation.xml sources/sts-guidelines/document.html
+```
 
 ## Generating STS from Metanorma Presentation XML
 
