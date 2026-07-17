@@ -36,9 +36,12 @@ jobs:
           fontist install "Futura PT Book"
           fontist install "Futura PT Demi"
           fontist install "Futura PT Light"
+          # Optional: math/body fallback fonts if the private repo carries them
+          fontist install "Cambria" || echo "::notice::Cambria not available, PDF will fall back"
+          fontist install "Cambria Math" || echo "::notice::Cambria Math not available, PDF will fall back"
 
       - name: Metanorma generate site
-        run: metanorma site generate --agree-to-terms
+        run: metanorma site generate --agree-to-terms --continue-without-fonts
 
       - name: Install metanorma-oiml STS toolchain
         run: |
