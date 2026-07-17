@@ -63,7 +63,10 @@ jobs:
           env -u BUNDLE_GEMFILE -u RUBYOPT ruby -r metanorma/oiml/sts -e \
             'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0]), renderer: :xslt))' \
             "$doc/document.sts.xml" "$doc/document.sts.html"
-          cp "$(gem contents metanorma-oiml | grep 'vendor/xslt/oiml-logo.svg')" "$doc/"
+          GEMDIR=$(env -u BUNDLE_GEMFILE -u RUBYOPT ruby -e \
+            'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
+          cp "$GEMDIR/vendor/xslt/oiml-logo.svg" "$doc/"
+          ls -la "$doc/"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
