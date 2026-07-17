@@ -7,10 +7,15 @@ publications (R/B/D/G/E) are encoded in NISO STS.
 
 ```sh
 bundle install
-bundle exec metanorma sources/document.adoc
+bundle exec metanorma compile sources/sts-guidelines/document.adoc
 ```
 
-Outputs: `sources/document.xml`, `sources/document.html`, `sources/document.pdf`.
+Outputs (in `sources/sts-guidelines/`): `document.xml`,
+`document.presentation.xml`, `document.html`, `document.pdf`, `document.rxl`.
+
+The `:mn-document-class: oiml` flavor is provided by the released
+`metanorma-taste` gem (a `metanorma-core` dependency), so the document
+compiles with the standard Metanorma toolchain — no unreleased gems needed.
 
 ## Generating STS from Metanorma Presentation XML
 
@@ -33,7 +38,8 @@ sts_html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml, renderer: :xslt)
 
 ```sh
 # From metanorma-oiml gem
-oiml-to-sts input.presentation.xml output.sts.xml
+oiml-sts convert sources/sts-guidelines/document.presentation.xml output.sts.xml
+# Add --validate to check the OIML X 999 Clause 6 rules
 ```
 
 ### STS HTML Rendering
