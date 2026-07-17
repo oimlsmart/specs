@@ -1,3 +1,4 @@
+[bibliography]
 == Normative references
 
 The following documents are referred to in the text in such a way that some or
@@ -5,13 +6,13 @@ all of their content constitutes requirements of this document. For dated
 references, only the edition cited applies. For undated references, the latest
 edition of the referenced document (including any amendments) applies.
 
-* ANSI/NISO Z39.102-2022, _STS: Standards Tag Suite (Version 1.2)_. NISO.
-* OIML B 6-2, _Directives of the OIML -- Guide 2: Preparation of OIML
+* [[[ansi-niso-z39-102,nofetch(ANSI/NISO Z39.102-2022)]]], _STS: Standards Tag Suite (Version 1.2)_. NISO.
+* [[[oiml-b-6-2,nofetch(OIML B 6-2)]]], _Directives of the OIML -- Guide 2: Preparation of OIML
   Recommendations and Documents_.
-* ISO 30042, _TermBase eXchange (TBX) -- Machine-readable terminology
+* [[[iso-30042,nofetch(ISO 30042)]]], _TermBase eXchange (TBX) -- Machine-readable terminology
   interchange format_.
-* RFC 3986, _Uniform Resource Identifier (URI): Generic Syntax_. IETF, 2005.
-* BCP 47, _Tags for Identifying Languages_. IETF.
+* [[[rfc3986,nofetch(RFC 3986)]]], _Uniform Resource Identifier (URI): Generic Syntax_. IETF, 2005.
+* [[[bcp47,nofetch(BCP 47)]]], _Tags for Identifying Languages_. IETF.
 
 [NOTE]
 ====
