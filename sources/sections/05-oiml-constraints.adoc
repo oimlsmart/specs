@@ -1,0 +1,40 @@
+[[_oiml_constraints]]
+== Profile requirements over base NISO STS
+
+=== General
+
+The profile specifies additional normative requirements over base NISO STS 1.2.
+
+=== Reused content shall carry `<permission>`
+
+Any content reused by OIML from a source outside the OIML publication shall
+carry a `<permission>` element identifying the copyright holder and the
+license under which the content is reused.
+
+*Why:* OIML's editorial policy requires that readers can identify the
+provenance and license of every reused passage. NISO STS permits but does not
+require `<permission>`; OIML makes it mandatory for reused content.
+
+[NOTE]
+====
+"Reused content" includes quotations, figures, tables, code samples, and any
+other material that OIML did not author. Content authored by OIML does not
+require `<permission>`.
+====
+
+=== `<self-uri>` shall not occur inside `<self-xref>`
+
+The `<self-uri>` element shall not occur as a descendant of `<self-xref>`.
+The `@rid` attribute of `<self-xref>` is the only mechanism OIML permits for
+self-references inside an OIML publication.
+
+*Why:* OIML's rendering pipeline uses `@rid` to resolve internal cross
+references at parse time; permitting `<self-uri>` inside `<self-xref>`
+introduces two resolution paths and causes ambiguous link targets.
+
+=== Every `<std>` shall carry `<title>` and `<pub-date>`
+
+Every `<std>` element shall contain both `<title>` and `<pub-date>`.
+
+*Why:* OIML bibliographic tooling renders citations by concatenating `<title>`
+and `<pub-date>`; omitting either element produces a malformed citation.

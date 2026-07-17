@@ -1,0 +1,44 @@
+[[_indexing_and_navigation]]
+== Indexing and navigation
+
+=== Tables of contents
+
+The table of contents is generated from the section structure; it is not
+authored by hand. OIML rendering tooling produces the TOC from `<sec>`/`<app>`
+`<label>` and `<title>` pairs.
+
+For author-controlled navigation aids (e.g., lists of figures, lists of
+tables), use a `<list-of>` element with the appropriate `@list-type`.
+
+=== Indexes
+
+An author-created subject index lives in `<back>` inside an `<index-div>`
+tree. Each `<index-entry>` carries a `<term>` and optional `<see>` or
+`<see-also>` cross references, plus a target pointer (`<xref>`).
+
+=== Internal cross-references
+
+Internal cross-references use `<xref>` with `@rid` pointing at the target's
+`@id`. The `@ref-type` attribute identifies the kind of target. OIML permits
+these `@ref-type` values:
+
+* `sec` -- section.
+* `table` -- table.
+* `fig` -- figure.
+* `fn` -- footnote.
+* `bibr` -- bibliographic entry.
+* `abbreviation` -- abbreviation (added in NISO STS 1.2; replaces the earlier
+  `@ref-type="other"` practice).
+* `custom` -- with `@custom-type` of `note`, `term-entry`, or `example` (added
+  in NISO STS 1.2).
+
+For self-references within an OIML publication, the `<self-xref>` element is
+used; OIML resolves self-references via the `@rid` attribute only -- see
+<<_oiml_constraints>> for the OIML-specific prohibition on `<self-uri>`
+inside `<self-xref>`.
+
+=== Footnotes
+
+Footnote text in OIML lives at the point of use (inside the `<fn>` element), not
+collected in `<back>`. This is harmonised with the
+<<ieciso-coding-guide-21,clause=10.1.8>>.

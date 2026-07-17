@@ -1,0 +1,39 @@
+[[_references_and_bibliography]]
+== References and bibliography
+
+OIML publications carry two reference lists in the back matter.
+
+=== Normative references
+
+Encoded as a `<ref-list>` with `@content-type="normative-refs"`, typically
+inside `<front>` or as the first item in `<back>`. Each reference is held in a
+`<ref>` element wrapping a `<mixed-citation>` or `<element-citation>`.
+
+=== Bibliography
+
+Encoded as a `<ref-list>` with `@content-type="bibliography"` in `<back>`.
+
+=== Citing other standards
+
+References to other standards use the `<std>` element inside the citation.
+OIML places the following constraints over base NISO STS:
+
+* Every `<std>` shall carry both `<title>` and `<pub-date>`. See
+  <<_oiml_constraints>>.
+* `<std>` may carry `@use-type` to indicate whether the reference is dated,
+  undated, or qualified (NISO STS 1.2 addition).
+
+=== Citing OIML's own publications
+
+When an OIML publication cites another OIML publication, the `<std>` element's
+`<std-ident>` child carries:
+
+* `<std-org>` with content `OIML`.
+* `<std-id>` with the OIML identifier (e.g., `OIML R 7:1979`).
+* `<doc-identifier>` mirroring the same.
+
+[NOTE]
+====
+OIML does not use punctuation between elements in `<ref-list>` -- this is
+harmonised with the IEC practice from ed. 2.1 (see link:../iso-sts-coding-changes-2-1/[Coding Changes ed 2.1, §4.4.2]).
+====

@@ -1,0 +1,80 @@
+[appendix,obligation="informative"]
+== Element map
+
+This annex lists every NISO STS element that OIML uses, with a one-line note
+on OIML's convention for each. For the full normative description of each
+element, see the Tag Library entry linked from the element name.
+
+.Element usage summary
+|===
+| Element | OIML usage
+
+| `<standard>`
+| Root element for every OIML publication that is not an adoption.
+
+| `<adoption>`
+| Root element when OIML adopts another SDO's publication.
+
+| `<iso-meta>`
+| Header metadata block. OIML uses `<iso-meta>` for compatibility with the
+  wider NISO STS ecosystem.
+
+| `<doc-identifier>`
+| Contains the OIML identifier (e.g. `OIML R 7:1979`).
+
+| `<std>`
+| Bibliographic reference to a standard. OIML requires `<title>` and
+  `<pub-date>` -- see <<_oiml_constraints>>.
+
+| `<title>`
+| Required on `<std>`; primary title of a document or section.
+
+| `<pub-date>`
+| Required on `<std>`; publication date.
+
+| `<permission>`
+| Required on reused content -- see <<_oiml_constraints>>.
+
+| `<self-xref>`
+| Self-reference within the publication. OIML resolves via `@rid` only.
+
+| `<self-uri>`
+| Forbidden as a descendant of `<self-xref>` -- see <<_oiml_constraints>>.
+
+| `<p>`
+| Paragraph -- base prose unit.
+
+| `<list>`
+| List (ordered or unordered).
+
+| `<table-wrap>`
+| Table wrapper.
+
+| `<fig>`
+| Figure wrapper; `<alt-text>` is required by OIML editorial policy.
+
+| `<xref>`
+| Cross-reference; OIML uses `@ref-type` from the NISO STS controlled
+  vocabulary.
+
+| `<fn>`
+| Footnote; lives at point of use per OIML convention.
+
+| `<disp-formula>` / `<inline-formula>`
+| Display and inline mathematics; OIML uses MathML 3.0.
+
+| `<sec>`
+| Section; nested for sub-clauses.
+
+| `<app-group>` / `<app>`
+| Annex group and annex entries.
+
+| `<ref-list>`
+| Reference list (normative or bibliographic).
+
+| `<contrib-group>` / `<contrib>`
+| Contributor group; used for TC/SC attribution.
+|===
+
+This annex is informative. The authoritative reference for every element is
+the corresponding chapter in the NISO STS Tag Library.

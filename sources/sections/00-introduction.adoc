@@ -1,0 +1,18 @@
+== Introduction
+
+OIML publications are currently authored in Metanorma AsciiDoc (using the
+`metanorma-oiml` flavor) and rendered to multiple output formats. To enable
+OIML publications to participate in the wider NISO STS ecosystem -- the
+vocabulary used by ISO, IEC, NISO, and many national standards bodies -- this
+document defines OIML's profile of NISO STS 1.2.
+
+This document is intended for:
+
+* authors and editors preparing OIML publications for publication in NISO STS;
+* tooling engineers building validation and rendering pipelines against OIML
+  NISO STS XML; and
+* anyone consuming OIML publications in NISO STS who needs to understand the
+  encoding conventions.
+
+The document is normative where it says so. Where it is silent, NISO STS
+applies unchanged.

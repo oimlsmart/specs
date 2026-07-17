@@ -1,0 +1,58 @@
+== OIML profile
+
+The OIML profile of NISO STS 1.2 is defined here.
+
+The profile is intentionally minimal: OIML adopts the base vocabulary unchanged
+and adds only the conventions needed to identify OIML publications, support
+OIML's bilingual (English + French) publishing model, and apply OIML editorial
+policy.
+
+.Profile summary
+|===
+| Aspect | OIML value
+
+| Publisher name
+| International Organization of Legal Metrology (OIML)
+
+| Identifier scheme (Recommendation)
+| `OIML R <num>:<year>` (e.g. `OIML R 7:1979`)
+
+| Identifier scheme (Basic Publication)
+| `OIML B <num>:<year>`
+
+| Identifier scheme (International Document)
+| `OIML D <num>:<year>`
+
+| Identifier scheme (International Guide)
+| `OIML G <num>:<year>`
+
+| Identifier scheme (Expert Report)
+| `OIML E <num>:<year>`
+
+| Official languages
+| English (primary), French (secondary)
+
+| Base vocabulary
+| NISO STS 1.2 (ANSI/NISO Z39.102-2022) -- unmodified
+
+| Document types
+| `recommendation`, `basic-publication`, `international-document`, `guide`,
+  `expert-report`
+
+| Publication stages
+| WD → CD → DIS → FDIS → Published; OIML uses the NISO STS `@stage-code`
+  values 30, 40, 50, 60 respectively.
+
+| Constraint over base (1 of 3)
+| `<permission>` required on any reused content. See <<_oiml_constraints>>.
+
+| Constraint over base (2 of 3)
+| `<self-uri>` forbidden inside `<self-xref>`. See <<_oiml_constraints>>.
+
+| Constraint over base (3 of 3)
+| `<title>` and `<pub-date>` required on every `<std>`. See
+  <<_oiml_constraints>>.
+|===
+
+The constraints over base are normative and apply to every OIML publication.
+They are restated and explained in <<_oiml_constraints>>.

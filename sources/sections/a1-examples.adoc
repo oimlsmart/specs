@@ -1,0 +1,107 @@
+[appendix,obligation="informative"]
+== Examples
+
+=== General
+
+This annex contains full XML examples of OIML publications encoded per this
+document.
+
+=== Minimal OIML Recommendation
+
+A minimal OIML Recommendation with a single clause and one bibliographic
+reference:
+
+[source,xml]
+----
+<?xml version="1.0" encoding="UTF-8"?>
+<standard xmlns:xlink="http://www.w3.org/1999/xlink"
+          xml:lang="en"
+          dtd-version="1.2">
+  <processing-meta tagset-family="sts"
+                   base-tagset="interchange"
+                   table-model="xhtml"
+                   mathml="MathML 3.0"
+                   terminology-model="tbx"/>
+  <front>
+    <iso-meta>
+      <doc-identifier>OIML R 7:1979</doc-identifier>
+      <std-title-group>
+        <title>Clinical thermometers (mercury-in-glass, with maximum device)</title>
+      </std-title-group>
+      <pub-date date-type="published">
+        <day>01</day><month>01</month><year>1979</year>
+      </pub-date>
+      <release-version stage-code="60">Published</release-version>
+      <permissions>
+        <copyright-statement>© 1979 International Organization of Legal Metrology</copyright-statement>
+        <copyright-year>1979</copyright-year>
+        <copyright-holder>International Organization of Legal Metrology</copyright-holder>
+      </permissions>
+      <custom-meta-group>
+        <custom-meta>
+          <meta-name>oiml-doc-series</meta-name>
+          <meta-value>R</meta-value>
+        </custom-meta>
+      </custom-meta-group>
+    </iso-meta>
+  </front>
+  <body>
+    <sec id="s_scope">
+      <label>1</label>
+      <title>Scope</title>
+      <p>This Recommendation applies to clinical thermometers, mercury-in-glass,
+        with maximum device.</p>
+    </sec>
+  </body>
+  <back>
+    <ref-list content-type="bibliography">
+      <ref>
+        <element-citation>
+          <std>
+            <std-ident>
+              <std-org>ISO</std-org>
+              <doc-identifier>ANSI/NISO Z39.102-2022</doc-identifier>
+            </std-ident>
+            <title>STS: Standards Tag Suite (Version 1.2)</title>
+            <pub-date><year>2022</year></pub-date>
+          </std>
+        </element-citation>
+      </ref>
+    </ref-list>
+  </back>
+</standard>
+----
+
+This example demonstrates:
+
+* `<processing-meta>` declaring OIML's default modeling choices.
+* The required OIML metadata fields (identifier, title, pub-date,
+  permissions).
+* `stage-code="60"` indicating a published document.
+* The OIML constraint of `<title>` + `<pub-date>` on `<std>` is satisfied.
+* The OIML document-series letter (`R`) carried in a `<custom-meta>`.
+
+=== Bilingual OIML publication
+
+For an OIML publication issued in both English and French, the metadata block
+is repeated with the appropriate `@xml:lang`:
+
+[source,xml]
+----
+<front>
+  <iso-meta xml:lang="en">
+    <doc-identifier>OIML R 7:1979</doc-identifier>
+    <std-title-group>
+      <title>Clinical thermometers (mercury-in-glass, with maximum device)</title>
+    </std-title-group>
+    ...
+  </iso-meta>
+  <iso-meta xml:lang="fr">
+    <doc-identifier>OIML R 7:1979</doc-identifier>
+    <std-title-group>
+      <title>Thermomètres médicaux (à mercure, en verre, avec dispositif à maximum)</title>
+    </std-title-group>
+    ...
+  </iso-meta>
+</front>
+----

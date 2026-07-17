@@ -1,0 +1,8 @@
+metanorma:
+  source:
+    files:
+      - sources/document.adoc
+
+  collection:
+    name: "OIML Encoding guidelines for publications in NISO STS"
+    organization: "OIML"

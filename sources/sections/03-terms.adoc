@@ -1,0 +1,38 @@
+== Terms and definitions
+
+=== NISO STS
+
+Standards Tag Suite, XML vocabulary defined by ANSI/NISO Z39.102-2022 for
+encoding standards documents
+
+=== profile
+
+conventions and constraints that a publisher adopts on top of a base vocabulary
+
+=== Metanorma presentation XML
+
+canonical XML form of an OIML publication
+
+NOTE: It is the input to the OIML STS conversion pipeline.
+
+
+==== International Recommendation
+
+OIML normative document published with the identifier form `OIML R <num>:<year>`
+
+==== International Basic Publication
+
+OIML informative document published with the identifier form `OIML B
+<num>:<year>`
+
+==== International Document
+
+OIML informative document published with the identifier form `OIML D <num>:<year>`
+
+==== International Guide
+
+OIML informative document published with the identifier form `OIML G <num>:<year>`
+
+==== Expert Report
+
+OIML informative document published with the identifier form `OIML E <num>:<year>`

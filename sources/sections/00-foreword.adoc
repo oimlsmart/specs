@@ -1,0 +1,14 @@
+== Foreword
+
+The International Organization of Legal Metrology (OIML) is an intergovernmental
+treaty organization whose primary aim is to harmonise the regulations and
+metrological controls applied by its Member States to measuring instruments
+used in trade, health, safety, and environmental protection.
+
+This document, _OIML X 999:2026_, specifies how OIML publications are encoded
+in NISO STS (ANSI/NISO Z39.102-2022). It is a derivative work: it draws its
+structure and most of its normative content from the _ISO STS Guidelines for
+coding ed.2.1_ and adapts that material to OIML's publication context.
+
+This first edition of OIML X 999 was approved by the OIML Technical Assembly
+in 2026.

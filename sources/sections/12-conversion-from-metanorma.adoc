@@ -1,0 +1,125 @@
+[[_conversion_from_metanorma]]
+== Conversion from Metanorma presentation XML
+
+OIML publications are authored in Metanorma AsciiDoc using the
+`metanorma-oiml` flavor and rendered to a canonical Metanorma presentation
+XML form. This clause specifies the conversion from that presentation XML
+form into OIML NISO STS XML as defined by this document.
+
+=== Conversion pipeline
+
+The conversion is implemented by the `StsSpecs::Converter` Ruby library
+shipped with this repository (see `lib/sts_specs/converter/`). The
+architecture mirrors that of the `Metanorma::Iso::Sts::Transformer` from the
+`metanorma-iso` gem.
+
+The conversion is a one-way, in-memory transformation:
+
+----
+Metanorma presentation XML  -->  StsSpecs::Converter  -->  OIML NISO STS XML
+----
+
+=== Conversion rules
+
+The converter maps the major Metanorma constructs as follows:
+
+.Metanorma → NISO STS mapping
+|===
+| Metanorma element | NISO STS element | Notes
+
+| `<metanorma>` (root)
+| `<standard>`
+| Root element. `@xml:lang` propagated.
+
+| `<bibdata>`
+| `<iso-meta>` block inside `<front>`
+| See <<_metadata>>.
+
+| `<preface><foreword>`
+| `<front><foreword>`
+|
+
+| `<preface><introduction>` (or `<clause obligation="informative">`)
+| `<front><introduction>`
+|
+
+| `<sections><clause>`
+| `<body><sec>`
+| Top-level clauses become top-level `<sec>`; nested clauses nest as
+  `<sec>` inside `<sec>`.
+
+| `<p>`
+| `<p>`
+|
+
+| `<ul>` / `<ol>` / `<li>`
+| `<list>` / `<list-item>`
+| `@list-type` derived: `ul` → `bullet`, `ol` → `order`.
+
+| `<table>` (with surrounding wrapper)
+| `<table-wrap>` containing `<table>`
+| XHTML model.
+
+| `<figure>` (with `<image>` or `<svg>`)
+| `<fig>` with `<caption>` and `<graphic>`
+|
+
+| `<formula>` (with `<stem>`)
+| `<disp-formula>` containing `<mml:math>`
+|
+
+| `<xref>`
+| `<xref>`
+| `@rid` preserved; `@ref-type` mapped from Metanorma's `@type`.
+
+| `<fn>`
+| `<fn>`
+| Lives at point of use (per OIML convention).
+
+| `<em>`
+| `<italic>`
+|
+
+| `<strong>`
+| `<bold>`
+|
+
+| `<tt>` / `<code>`
+| `<monospace>` / `<inline-code>`
+|
+
+| `<sub>` / `<sup>`
+| `<sub>` / `<sup>`
+|
+
+| `<annex>`
+| `<app-group><app>`
+|
+
+| `<bibliography><references>`
+| `<back><ref-list content-type="bibliography">`
+|
+
+| Normative references block
+| `<ref-list content-type="normative-refs">`
+|
+
+| Metadata: `<title>`, `<docidentifier>`, `<date>`, `<contributor>`,
+  `<copyright>`, `<edition>`, `<language>`, `<status>`
+| `<iso-meta>` children: `<std-title-group><title>`, `<doc-identifier>`,
+  `<pub-date>`, `<contrib-group>`, `<permissions>`, `<edition>`, etc.
+|
+|===
+
+=== Identifier mapping
+
+OIML identifiers (`OIML R <num>:<year>`, etc.) are passed through verbatim.
+The OIML document-type letter (R, B, D, G, E, X) is encoded as a
+`<custom-meta>` with `@meta-name="oiml-doc-series"` inside `<iso-meta>`.
+
+=== Validation
+
+The output OIML NISO STS XML SHALL satisfy the constraints in
+<<_oiml_constraints>>. The converter SHALL emit `<permission>` on any reused
+content marked in the source, SHALL NOT emit `<self-uri>` inside
+`<self-xref>`, and SHALL emit `<title>` and `<pub-date>` on every `<std>`.

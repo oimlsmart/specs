@@ -1,0 +1,46 @@
+== Mathematics, figures, and tables
+
+=== Mathematics
+
+Inline mathematics use `<inline-formula>`; display (block) mathematics use
+`<disp-formula>`. OIML requires MathML 3.0 (declared on `<processing-meta>`
+via `@mathml="MathML 3.0"`).
+
+[source,xml]
+----
+<disp-formula id="eq_1">
+  <label>(1)</label>
+  <mml:math xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    ...
+  </mml:math>
+</disp-formula>
+----
+
+A formula key (legend) uses the `<legend>` element (NISO STS 1.2 addition —
+see link:../iso-sts-coding-changes-2-1/[Coding Changes ed 2.1, §7.3]).
+
+=== Figures
+
+Figures follow the conventions in <<_body_content>>. The size of a graphic may
+be indicated in `@specific-use` (NISO STS 1.2 -- see Coding Changes ed 2.1,
+§5.10).
+
+Unit statements in figures: in OIML, the `<p>` containing the unit statement
+lives inside the figure caption (`<caption>`) -- harmonised with ed. 2.1 §8.4.
+
+Sub-figures and multiple graphics: see the source coding guidelines §8.2 for
+the conventions OIML adopts.
+
+=== Tables
+
+OIML tables use the XHTML table model by default. The full table-coding
+conventions (alignment, merged cells, line breaks, lists inside cells,
+landscape tables, rules, frames, border styling, alignment of the table, text
+rotation) are inherited from the source coding guidelines Annex B.
+
+[NOTE]
+====
+OIML harmonises with ISO/IEC ed. 2.1 on table styling (see Coding Changes
+ed 2.1, §6.3). Tables may carry size attributes for rendering information
+(see Coding Changes ed 2.1, §6.1).
+====

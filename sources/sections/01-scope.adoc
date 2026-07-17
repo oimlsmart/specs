@@ -1,0 +1,19 @@
+== Scope
+
+This document specifies the encoding of OIML publications in NISO STS
+(ANSI/NISO Z39.102-2022).
+
+It applies to all OIML document types -- International Recommendations (R),
+International Basic Publications (B), International Documents (D),
+International Guides (G), and Expert Reports (E) -- and to every publication
+stage from working draft through published edition.
+
+It does **not** apply to:
+
+* OIML administrative or procedural documents that are not published in the
+  OIML document series;
+* non-XML representations of OIML publications (e.g. derived PDF or HTML
+  renderings);
+* vocabularies other than NISO STS 1.2.
+
+Where this document is silent, NISO STS 1.2 applies unchanged.

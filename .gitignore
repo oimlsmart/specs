@@ -1,0 +1,9 @@
+sources/*.xml
+sources/*.html
+sources/*.pdf
+sources/*.rxl
+sources/*.log*
+sources/*.fo.xml
+sources/*.err*
+Gemfile.lock
+_site/

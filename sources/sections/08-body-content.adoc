@@ -1,0 +1,70 @@
+== Body content
+
+This clause specifies OIML's conventions for prose content in the body of a
+publication.
+
+=== Paragraphs
+
+Use `<p>` for paragraphs. OIML does not permit block-level structures inside
+`<p>`; nested structures must be siblings.
+
+=== Lists
+
+Use `<list>` with one of these `@list-type` values:
+
+`bullet`:: unordered list.
+
+`order`:: numbered list with Arabic numerals.
+
+`alpha-lower`, `alpha-upper`:: alphabetical.
+
+`roman-lower`, `roman-upper`:: Roman numerals.
+
+`arabic`:: added in NISO STS 1.2 for Arabic-numeral lists that do not fit
+`order`.
+
+[NOTE]
+====
+OIML harmonises with ISO/IEC: the closed `@list-type` value list is the only
+permitted set (see <<ieciso-coding-guide-21,clause=5.7>>).
+====
+
+Each `<list-item>` may carry a `<label>`.
+
+=== Tables
+
+Tables are wrapped in `<table-wrap>`. OIML uses the XHTML table model
+(`<table>` with `<tr>`, `<td>`, `<th>`) by default. The model in use is
+declared on `<processing-meta>` via `@table-model`.
+
+Table headers use `<th>` with `<bold>` for emphasis (harmonised with <<ieciso-coding-guide-21>>).
+
+For detailed table-coding rules, see <<ieciso-coding-guide-21,annex=B>>.
+
+=== Figures
+
+Figures are wrapped in `<fig>` with a `<label>`, `<caption>`, and one or more
+`<graphic>` elements. OIML requires `<alt-text>` on every figure for
+accessibility.
+
+=== Quotations
+
+Block quotations use `<disp-quote>`. In NISO STS 1.2 (and OIML by extension),
+`<disp-quote>` may carry a source (`<attrib>`) and usage permissions
+(`<permissions>`).
+
+=== Notes and examples
+
+OIML uses both normative and informative variants:
+
+* `<normative-note>`, `<non-normative-note>`.
+* `<normative-example>`, `<non-normative-example>`.
+
+Notes inside tables, figures, and formulae use `<table-wrap-foot>` or
+`<caption>` as appropriate.
+
+=== Code and preformatted text
+
+Block code uses `<code>` with `@code-type` and `@xml:space="preserve"`. Inline
+code uses `<inline-code>` (NISO STS 1.2). Verbatim text that is not code uses
+`<preformat>`.

@@ -1,0 +1,53 @@
+= OIML Encoding guidelines for publications in NISO STS
+:title-en: OIML Encoding guidelines for publications in NISO STS
+:docidentifier: OIML X 999:2026
+:docnumber: 999
+:series: X
+:edition: 1
+:year: 2026
+:publisher: International Organization of Legal Metrology
+:copyright-year: 2026
+:language: en
+:doctype: guide
+:docstage: 60
+:docsubstage: 60
+:mn-document-class: oiml
+:mn-output-extensions: xml,html,pdf,rxl
+:local-cache-only:
+:toclevels-pdf: 2
+:imagesdir: images
+
+include::sections/00-foreword.adoc[]
+
+include::sections/00-introduction.adoc[]
+
+include::sections/01-scope.adoc[]
+
+include::sections/02-normrefs.adoc[]
+
+include::sections/03-terms.adoc[]
+
+include::sections/04-oiml-profile.adoc[]
+
+include::sections/05-oiml-constraints.adoc[]
+
+include::sections/06-document-structure.adoc[]
+
+include::sections/07-metadata.adoc[]
+
+include::sections/08-body-content.adoc[]
+
+include::sections/09-references.adoc[]
+
+include::sections/10-math-figures-tables.adoc[]
+
+include::sections/11-indexing-and-navigation.adoc[]
+
+include::sections/12-conversion-from-metanorma.adoc[]
+
+include::sections/99-bibliography.adoc[]
+
+include::sections/a1-examples.adoc[]
+
+include::sections/a2-oiml-element-map.adoc[]
+

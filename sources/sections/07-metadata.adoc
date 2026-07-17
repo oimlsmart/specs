@@ -1,0 +1,64 @@
+[[_metadata]]
+== Header metadata
+
+The header metadata block in an OIML publication is encoded using the
+`<iso-meta>` element. The following table lists the required and recommended
+child elements for OIML publications.
+
+.OIML header metadata fields
+|===
+| Element | Required? | OIML convention
+
+| `<doc-identifier>`
+| Required
+| The OIML identifier (e.g., `OIML R 7:1979`, `OIML B 6-2:2024`,
+  `OIML X 999:2026`).
+
+| `<std-title-group>`
+| Required
+| Contains `<title>`, `<subtitle>`, `<full>`, `<main>`, `<intro>`,
+  `<compl>` (per the title decomposition in the source coding guidelines).
+
+| `<std-org>`
+| Required
+| Identifies OIML as the publisher (`std-org-type="publisher"`).
+
+| `<pub-date>`
+| Required
+| The publication date in ISO 8601 form (`@date-type="published"`).
+
+| `<release-version>`
+| Required
+| Identifies the publication stage (`@stage-code` from the ISO Harmonized
+  Stage Codes: 30 = WD, 40 = CD, 50 = DIS, 60 = published).
+
+| `<permissions>`
+| Required
+| Copyright holder (`International Organization of Legal Metrology`),
+  copyright year, and license.
+
+| `<contrib-group>`
+| Recommended
+| Authors and editors (typically the OIML Technical Committee or
+  Subcommittee).
+
+| `<abstract>`
+| Recommended
+| The document's abstract.
+
+| `<kwd-group>`
+| Optional
+| Keywords (`@xml:lang` per language).
+
+| `<custom-meta-group>`
+| Optional
+| OIML-specific extension points (e.g., the originating TC/SC identifiers,
+  OIML document type).
+|===
+
+[NOTE]
+====
+For bilingual OIML publications, the metadata block is repeated with
+`@xml:lang="fr"` for each secondary-language title, abstract, and keyword
+group.
+====

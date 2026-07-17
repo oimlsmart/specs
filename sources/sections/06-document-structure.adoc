@@ -1,0 +1,47 @@
+== Document structure
+
+An OIML publication encoded in NISO STS is rooted at the `<standard>` element
+(or `<adoption>` for publications adopted from another SDO). The root contains
+three peer blocks plus an optional processing-metadata block:
+
+[source,xml]
+----
+<standard xml:lang="en">
+  <processing-meta .../>      <!-- optional, NISO STS 1.2+ -->
+  <front>...</front>          <!-- metadata, foreword, introduction -->
+  <body>...</body>            <!-- clauses, tables, figures, formulae -->
+  <back>...</back>            <!-- annexes, bibliography, indexes -->
+</standard>
+----
+
+=== Front matter
+
+The OIML front matter contains an `<iso-meta>` block (used for compatibility
+with the wider STS ecosystem, even though OIML is not ISO), a foreword, and an
+introduction. For bilingual OIML publications, the secondary-language
+translation is carried in a sibling `<iso-meta xml:lang="fr">` block.
+See <<_metadata>> for the required metadata fields.
+
+=== Body
+
+The body is built from nested `<sec>` elements. OIML clauses follow the
+standard ISO/IEC structure (Scope, Normative references, Terms and
+definitions, ..., main clauses, Annexes). Each `<sec>` carries a `<label>` and a
+`<title>`.
+
+[NOTE]
+====
+OIML uses machine-readable `@id` values for sections, not human-readable labels.
+====
+
+=== Back matter
+
+The OIML back matter holds:
+
+* Annexes inside an `<app-group>`; each annex is an `<app>` with
+  `@content-type` of `informative` or `normative`.
+* The bibliography in a `<ref-list>` with `@content-type="bibliography"`.
+* Indexes (optional) using `<index-div>` and `<index-entry>`.
+
+Footnotes in OIML publications live at the point of use, not in `<back>` —
+see <<_indexing_and_navigation>>.

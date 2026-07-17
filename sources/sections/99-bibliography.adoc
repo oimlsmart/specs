@@ -1,0 +1,4 @@
+[bibliography]
+== Bibliography
+
+* [[[ieciso-coding-guide-21,nofetch(IEC/ISO Guidelines for Coding 2.1)]]], IEC/ISO NISO STS 1.2 IEC/ISO Coding Guidelines Edition 2.1.
