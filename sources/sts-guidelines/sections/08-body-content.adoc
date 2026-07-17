@@ -1,3 +1,4 @@
+[[_body_content]]
 == Body content
 
 This clause specifies OIML's conventions for prose content in the body of a

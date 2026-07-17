@@ -1,8 +1,8 @@
 metanorma:
   source:
     files:
-      - sources/document.adoc
+      - sources/sts-guidelines/document.adoc
 
   collection:
-    name: "OIML Encoding guidelines for publications in NISO STS"
+    name: "OIML SMART Specifications"
     organization: "OIML"
