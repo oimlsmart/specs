@@ -52,7 +52,7 @@ jobs:
           git clone --depth 1 https://github.com/metanorma/metanorma-oiml /tmp/metanorma-oiml
           cd /tmp/metanorma-oiml
           gem build metanorma-oiml.gemspec
-          gem install --local metanorma-oiml-*.gem
+          gem install metanorma-oiml-*.gem
 
       - name: Generate OIML STS outputs alongside document.html
         run: |
