@@ -31,8 +31,11 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.METANORMA_CI_PAT_TOKEN }}
         run: |
+          # Refresh the default public formulas repo first (cleartype/Cambria
+          # lives there); the container's pre-built index does not include it
+          fontist update
           # Register the private repo under its own name so the default
-          # public formulas repo stays available (Cambria lives there)
+          # public formulas repo stays available
           fontist repo setup private "https://${GH_TOKEN}@github.com/metanorma/fontist-formulas-private"
           fontist repo update private
           fontist install "Futura PT Book" --accept-all-licenses --no-progress
