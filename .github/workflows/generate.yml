@@ -31,14 +31,15 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.METANORMA_CI_PAT_TOKEN }}
         run: |
-          fontist repo setup metanorma "https://${GH_TOKEN}@github.com/metanorma/fontist-formulas-private"
-          fontist repo update metanorma
-          fontist install "Futura PT Book"
-          fontist install "Futura PT Demi"
-          fontist install "Futura PT Light"
-          # Optional: math/body fallback fonts if the private repo carries them
-          fontist install "Cambria" || echo "::notice::Cambria not available, PDF will fall back"
-          fontist install "Cambria Math" || echo "::notice::Cambria Math not available, PDF will fall back"
+          # Register the private repo under its own name so the default
+          # public formulas repo stays available (Cambria lives there)
+          fontist repo setup private "https://${GH_TOKEN}@github.com/metanorma/fontist-formulas-private"
+          fontist repo update private
+          fontist install "Futura PT Book" --accept-all-licenses --no-progress
+          fontist install "Futura PT Demi" --accept-all-licenses --no-progress
+          fontist install "Futura PT Light" --accept-all-licenses --no-progress
+          fontist install "Cambria" --accept-all-licenses --no-progress
+          fontist install "Cambria Math" --accept-all-licenses --no-progress
 
       - name: Metanorma generate site
         run: metanorma site generate --agree-to-terms --continue-without-fonts
