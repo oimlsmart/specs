@@ -57,8 +57,10 @@ jobs:
       - name: Generate OIML STS outputs alongside document.html
         run: |
           doc=_site/documents/sts-guidelines
-          oiml-sts convert "$doc/document.presentation.xml" "$doc/document.sts.xml"
-          ruby -r metanorma/oiml/sts -e \
+          # bypass the image's bundler shim; the gem was installed system-wide
+          env -u BUNDLE_GEMFILE -u RUBYOPT oiml-sts convert \
+            "$doc/document.presentation.xml" "$doc/document.sts.xml"
+          env -u BUNDLE_GEMFILE -u RUBYOPT ruby -r metanorma/oiml/sts -e \
             'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0]), renderer: :xslt))' \
             "$doc/document.sts.xml" "$doc/document.sts.html"
           cp "$(gem contents metanorma-oiml | grep 'vendor/xslt/oiml-logo.svg')" "$doc/"
