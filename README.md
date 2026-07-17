@@ -20,10 +20,17 @@ compiles with the standard Metanorma toolchain — no unreleased gems needed.
 ### Site HTML (metanorma-document)
 
 The HTML for the site is generated from the presentation XML with the
-`metanorma-document` typed-model renderer (not the isodoc HTML):
+`metanorma-document` typed-model renderer (not the isodoc HTML).
+metanorma-document >= 0.2.11 is required (earlier releases render an empty
+body); it is not yet on rubygems, so build it from source — the same way CI
+does (note: it is kept out of this repo's bundle because its
+`pubid ~> 2.0.0.pre.alpha` dependency conflicts with the pubid 1.x line the
+metanorma-cli stack requires):
 
 ```sh
-bundle exec ruby -r metanorma/document -e \
+git clone --depth 1 https://github.com/metanorma/metanorma-document /tmp/metanorma-document
+(cd /tmp/metanorma-document && gem build metanorma-document.gemspec && gem install metanorma-document-*.gem)
+ruby -r metanorma/document -e \
   'doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
   sources/sts-guidelines/document.presentation.xml sources/sts-guidelines/document.html
 ```

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OIML SMART Specifications</title>
+<style>
+  :root {
+    --teal: #024873;
+    --teal-light: #035a8f;
+    --teal-dark: #013a5e;
+    --amber-warm: #d97706;
+    --amber-deep: #92400e;
+    --amber-50: #fffbeb;
+    --amber-100: #fef3c7;
+    --amber-200: #fde68a;
+    --gray-900: #111827;
+    --gray-800: #1f2937;
+    --gray-600: #4b5563;
+    --gray-500: #6b7280;
+    --gray-300: #d1d5db;
+    --gray-200: #e5e7eb;
+    --gray-100: #f3f4f6;
+    --warm-bg: #fafaf9;
+    --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: var(--font-sans);
+    color: var(--gray-900);
+    background: var(--warm-bg);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---- draft banner ---- */
+  .draft-banner {
+    background: var(--amber-50);
+    border-bottom: 1px solid var(--amber-200);
+    color: var(--amber-deep);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.45rem 1rem;
+  }
+
+  /* ---- header ---- */
+  header.site {
+    background: #fff;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .header-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .wordmark {
+    font-weight: 800;
+    font-size: 1.15rem;
+    letter-spacing: -0.01em;
+    color: var(--teal);
+  }
+  .wordmark span {
+    color: var(--gray-500);
+    font-weight: 400;
+  }
+  .wordmark .sep {
+    color: var(--gray-300);
+    margin: 0 0.55rem;
+    font-weight: 300;
+  }
+  .header-meta {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    color: var(--gray-500);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  /* ---- hero ---- */
+  .hero {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 4rem 1.5rem 3rem;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--teal-light);
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-size: 2.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    max-width: 22ch;
+  }
+  .hero p.lede {
+    margin-top: 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--gray-600);
+    max-width: 62ch;
+  }
+
+  /* ---- document list ---- */
+  main {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    width: 100%;
+    flex: 1;
+  }
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gray-500);
+    margin: 1.5rem 0 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-label::after {
+    content: "";
+    flex: 1;
+    border-top: 1px solid var(--gray-200);
+  }
+  .doc-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .doc-card:hover {
+    border-color: var(--teal);
+    box-shadow: 0 4px 16px rgba(2, 72, 115, 0.08);
+  }
+  .doc-card-head {
+    padding: 1.4rem 1.5rem 1.1rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .doc-id {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--amber-warm);
+    margin-bottom: 0.45rem;
+  }
+  .doc-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .doc-sub {
+    margin-top: 0.4rem;
+    font-size: 0.85rem;
+    color: var(--gray-500);
+  }
+  .formats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .fmt {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.9rem 1.5rem;
+    border-top: 1px solid var(--gray-100);
+    transition: background 0.12s ease;
+  }
+  .fmt:hover { background: rgba(2, 72, 115, 0.05); }
+  .fmt .tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--teal);
+    background: rgba(2, 72, 115, 0.08);
+    border-radius: 3px;
+    padding: 0.22rem 0.45rem;
+    white-space: nowrap;
+  }
+  .fmt .name { font-size: 0.88rem; color: var(--gray-800); }
+  .fmt .arrow {
+    margin-left: auto;
+    color: var(--gray-300);
+    transition: color 0.12s ease, transform 0.12s ease;
+  }
+  .fmt:hover .arrow {
+    color: var(--teal);
+    transform: translateX(2px);
+  }
+
+  /* ---- footer ---- */
+  footer.site {
+    background: var(--teal-dark);
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: auto;
+  }
+  .footer-inner {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 1.6rem 1.5rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-tag {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.55);
+  }
+  @media (max-width: 640px) {
+    h1 { font-size: 1.9rem; }
+    .header-meta { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="draft-banner">⚠&ensp;OIML SMART pilot programme · internal use only · all documents and specifications are drafts and may change without notice</div>
+
+<header class="site">
+  <div class="header-inner">
+    <div class="wordmark">OIML SMART<span class="sep">·</span><span>Specifications</span></div>
+    <div class="header-meta">48.8566° N · 2.3522° E&ensp;·&ensp;OIML · BIML · Paris</div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">Specifications · NISO STS</div>
+  <h1>OIML encoding guidelines and specifications</h1>
+  <p class="lede">
+    Specifications that define how OIML publications become SMART — structured
+    digital artifacts encoded in NISO STS (ANSI/NISO Z39.102-2022), executable,
+    traceable, and interoperable across the global metrology community.
+  </p>
+</section>
+
+<main>
+  <div class="section-label">§ 01 · Documents</div>
+
+  <div class="doc-card">
+    <div class="doc-card-head">
+      <div class="doc-id">OIML X 999:2026 · Edition 1</div>
+      <div class="doc-title">OIML Encoding guidelines for publications in NISO STS</div>
+      <div class="doc-sub">The OIML profile of NISO STS — how OIML publications (R · B · D · G · E · X) are encoded.</div>
+    </div>
+    <div class="formats">
+      <a class="fmt" href="documents/sts-guidelines/document.html">
+        <span class="tag">HTML</span><span class="name">Reader view</span><span class="arrow">→</span>
+      </a>
+      <a class="fmt" href="documents/sts-guidelines/document.sts.html">
+        <span class="tag">STS HTML</span><span class="name">NISO STS, rendered</span><span class="arrow">→</span>
+      </a>
+      <a class="fmt" href="documents/sts-guidelines/document.sts.xml">
+        <span class="tag">STS XML</span><span class="name">NISO STS, machine-readable</span><span class="arrow">→</span>
+      </a>
+      <a class="fmt" href="documents/sts-guidelines/document.pdf">
+        <span class="tag">PDF</span><span class="name">Print rendering</span><span class="arrow">→</span>
+      </a>
+      <a class="fmt" href="documents/sts-guidelines/document.xml">
+        <span class="tag">XML</span><span class="name">Metanorma semantic XML</span><span class="arrow">→</span>
+      </a>
+      <a class="fmt" href="documents/sts-guidelines/document.rxl">
+        <span class="tag">RXL</span><span class="name">Relaton bibliography</span><span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="footer-inner">
+    <div class="footer-tag">Standards that are machine-actionable.</div>
+    <div class="footer-meta">OIML SMART · Specifications · www.oimlsmart.org/specs</div>
+  </div>
+</footer>
+
+</body>
+</html>

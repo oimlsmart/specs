@@ -47,12 +47,15 @@ jobs:
       - name: Metanorma generate site
         run: metanorma site generate --agree-to-terms --continue-without-fonts
 
-      - name: Install metanorma-oiml STS toolchain
+      - name: Install metanorma-document and metanorma-oiml toolchains
         run: |
+          # metanorma-document >= 0.2.11 renders the body; earlier releases
+          # produce an empty page. Not yet on rubygems, so build from source.
+          # It must be installed BEFORE metanorma-oiml, which depends on it.
+          git clone --depth 1 https://github.com/metanorma/metanorma-document /tmp/metanorma-document
+          (cd /tmp/metanorma-document && gem build metanorma-document.gemspec && gem install metanorma-document-*.gem)
           git clone --depth 1 https://github.com/metanorma/metanorma-oiml /tmp/metanorma-oiml
-          cd /tmp/metanorma-oiml
-          gem build metanorma-oiml.gemspec
-          gem install metanorma-oiml-*.gem
+          (cd /tmp/metanorma-oiml && gem build metanorma-oiml.gemspec && gem install metanorma-oiml-*.gem)
 
       - name: Generate site HTML (metanorma-document) and OIML STS outputs
         run: |
@@ -70,6 +73,9 @@ jobs:
             'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
           cp "$GEMDIR/vendor/xslt/oiml-logo.svg" "$doc/"
           ls -la "$doc/"
+
+      - name: Install themed site index
+        run: cp site/index.html _site/index.html
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
