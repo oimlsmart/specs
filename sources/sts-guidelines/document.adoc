@@ -1,5 +1,5 @@
 = OIML Encoding guidelines for publications in NISO STS
-:title-en: OIML Encoding guidelines for publications in NISO STS
+:title-main-en: OIML Encoding guidelines for publications in NISO STS
 :docidentifier: OIML X 999:2026
 :docnumber: 999
 :series: X
@@ -12,7 +12,7 @@
 :docstage: 60
 :docsubstage: 60
 :mn-document-class: oiml
-:mn-output-extensions: xml,html,pdf,rxl
+:mn-output-extensions: xml,pdf,rxl
 :local-cache-only:
 :toclevels-pdf: 2
 :imagesdir: images
