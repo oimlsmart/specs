@@ -1,6 +1,5 @@
-GIT
-  remote: https://github.com/metanorma/metanorma-oiml.git
-  revision: 78450a5c6a44febb341d3efe05f8db60f5228d76
+PATH
+  remote: vendor/metanorma-oiml
   specs:
     metanorma-oiml (0.1.0)
       lutaml-model (~> 0.8.0)
