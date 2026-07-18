@@ -5,9 +5,9 @@ sources/**/*.rxl
 sources/**/*.log*
 sources/**/*.fo.xml
 sources/**/*.err*
-Gemfile.lock
-# Gemfile.renderer.lock is committed on purpose: it pins the renderer
-# toolchain (incl. the metanorma-oiml git revision) for reproducible CI
+Gemfile*.lock
+# Gemfile.renderer.lock is not committed: the lock format follows the local
+# bundler major version, which may differ from the CI container's bundler
 _site/
 /vendor/
 metanorma.asciidoc.log.txt
