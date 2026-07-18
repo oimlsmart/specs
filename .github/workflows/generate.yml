@@ -76,6 +76,10 @@ jobs:
       - name: Generate site HTML (metanorma-document) and OIML STS outputs
         env:
           BUNDLE_GEMFILE: Gemfile.renderer
+          # the metanorma image freezes its baked-in bundle; thaw it so
+          # bundler can resolve and fetch this Gemfile's git sources
+          BUNDLE_FROZEN: "false"
+          BUNDLE_DEPLOYMENT: "false"
         run: |
           bundle install
           doc=_site/documents/sts-guidelines
