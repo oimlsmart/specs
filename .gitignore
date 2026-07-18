@@ -5,6 +5,6 @@ sources/**/*.rxl
 sources/**/*.log*
 sources/**/*.fo.xml
 sources/**/*.err*
-Gemfile.lock
+Gemfile*.lock
 _site/
 metanorma.asciidoc.log.txt
