@@ -5,6 +5,7 @@
 # RubyGems never satisfies a non-prerelease requirement with a prerelease).
 #
 # Usage:
+#   git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
 #   BUNDLE_GEMFILE=Gemfile.renderer bundle install
 #   BUNDLE_GEMFILE=Gemfile.renderer bundle exec ruby -e '...'
 #   BUNDLE_GEMFILE=Gemfile.renderer bundle exec oiml-sts convert ...
@@ -13,7 +14,9 @@ source "https://rubygems.org"
 
 # >= 0.2.11 renders the document body; earlier releases emit an empty page
 gem "metanorma-document", "~> 0.2.12"
-gem "metanorma-oiml", github: "metanorma/metanorma-oiml"
+# path source (not git): clone first —
+#   git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
+gem "metanorma-oiml", path: "vendor/metanorma-oiml"
 
 # required at load time by metanorma-document but only declared transitively
 gem "mml"

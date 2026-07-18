@@ -29,6 +29,7 @@ requirement with a prerelease version) — so it has its own Gemfile,
 `Gemfile.renderer` (used by CI the same way):
 
 ```sh
+git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
 BUNDLE_GEMFILE=Gemfile.renderer bundle install
 BUNDLE_GEMFILE=Gemfile.renderer bundle exec ruby -e \
   'require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \

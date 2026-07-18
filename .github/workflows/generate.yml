@@ -77,10 +77,11 @@ jobs:
         env:
           BUNDLE_GEMFILE: Gemfile.renderer
           # the metanorma image freezes its baked-in bundle; thaw it so
-          # bundler can resolve and fetch this Gemfile's git sources
+          # bundler can resolve and fetch this Gemfile's sources
           BUNDLE_FROZEN: "false"
           BUNDLE_DEPLOYMENT: "false"
         run: |
+          git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
           bundle install
           doc=_site/documents/sts-guidelines
           bundle exec ruby -e \
