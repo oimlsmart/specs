@@ -16,7 +16,9 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  build:
+  # Stage 1 — Metanorma proper (released stack): compile AsciiDoc to
+  # presentation XML and render outputs (xml, pdf, rxl), assemble _site.
+  compile:
     runs-on: ubuntu-latest
     container:
       image: metanorma/metanorma:latest
@@ -46,6 +48,30 @@ jobs:
 
       - name: Metanorma generate site
         run: metanorma site generate --agree-to-terms --continue-without-fonts
+
+      - name: Upload compiled site
+        uses: actions/upload-artifact@v4
+        with:
+          name: mn-site
+          path: _site
+          if-no-files-found: error
+
+  # Stage 2 — Renderer toolchain (pubid 2.0 / relaton prerelease line):
+  # metanorma-document HTML, OIML STS XML/HTML, themed index, Pages artifact.
+  render:
+    needs: compile
+    runs-on: ubuntu-latest
+    container:
+      image: metanorma/metanorma:latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download compiled site
+        uses: actions/download-artifact@v4
+        with:
+          name: mn-site
+          path: _site
 
       - name: Install metanorma-document and metanorma-oiml toolchains
         run: |
@@ -90,7 +116,7 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    needs: build
+    needs: render
     steps:
       - name: Setup Pages
         uses: actions/configure-pages@v5
