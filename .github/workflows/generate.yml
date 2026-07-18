@@ -58,14 +58,25 @@ jobs:
 
   # Stage 2 — Renderer toolchain (pubid 2.0 / relaton prerelease line):
   # metanorma-document HTML, OIML STS XML/HTML, themed index, Pages artifact.
+  # Runs on a vanilla Ruby setup, NOT the metanorma container: the image's
+  # baked-in bundler config interferes with installing a second bundle.
   render:
     needs: compile
     runs-on: ubuntu-latest
-    container:
-      image: metanorma/metanorma:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Vendor metanorma-oiml (unreleased, path source)
+        run: git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
+
+      - name: Set up Ruby with the renderer bundle
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+        env:
+          BUNDLE_GEMFILE: Gemfile.renderer
 
       - name: Download compiled site
         uses: actions/download-artifact@v4
@@ -76,13 +87,7 @@ jobs:
       - name: Generate site HTML (metanorma-document) and OIML STS outputs
         env:
           BUNDLE_GEMFILE: Gemfile.renderer
-          # the metanorma image freezes its baked-in bundle; thaw it so
-          # bundler can resolve and fetch this Gemfile's sources
-          BUNDLE_FROZEN: "false"
-          BUNDLE_DEPLOYMENT: "false"
         run: |
-          git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
-          bundle install
           doc=_site/documents/sts-guidelines
           bundle exec ruby -e \
             'require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
