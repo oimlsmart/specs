@@ -22,17 +22,16 @@ compiles with the standard Metanorma toolchain — no unreleased gems needed.
 The HTML for the site is generated from the presentation XML with the
 `metanorma-document` typed-model renderer (not the isodoc HTML).
 metanorma-document >= 0.2.11 is required (earlier releases render an empty
-body). It runs on the pubid 2.0 / relaton 2.2.0.pre line, which cannot share
-a bundle with the released metanorma-cli stack (metanorma-standoc pins
+body). It runs on the pubid 2.0 / relaton prerelease line, which cannot
+share a bundle with the released metanorma-cli stack (metanorma-standoc pins
 relaton-cli ~> 2.1.0, and RubyGems never satisfies a non-prerelease
-requirement with a prerelease version), so install it standalone — the same
-way CI does (`mml` is required at load time but only declared transitively):
+requirement with a prerelease version) — so it has its own Gemfile,
+`Gemfile.renderer` (used by CI the same way):
 
 ```sh
-gem install pubid --pre
-gem install relaton-bib --pre
-gem install metanorma-document mml
-ruby -e 'gem "metanorma-document"; require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+BUNDLE_GEMFILE=Gemfile.renderer bundle install
+BUNDLE_GEMFILE=Gemfile.renderer bundle exec ruby -e \
+  'require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
   sources/sts-guidelines/document.presentation.xml sources/sts-guidelines/document.html
 ```
 

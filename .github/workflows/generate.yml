@@ -73,32 +73,21 @@ jobs:
           name: mn-site
           path: _site
 
-      - name: Install metanorma-document and metanorma-oiml toolchains
-        run: |
-          # Renderer toolchain runs on the pubid 2.0 / relaton prerelease line;
-          # install these first so later gem installs keep them
-          gem install pubid --pre
-          gem install relaton-bib --pre
-          # metanorma-document >= 0.2.11 renders the body; mml is required at
-          # load time but only declared transitively (via sts/plurimath)
-          gem install metanorma-document mml
-          git clone --depth 1 https://github.com/metanorma/metanorma-oiml /tmp/metanorma-oiml
-          (cd /tmp/metanorma-oiml && gem build metanorma-oiml.gemspec && gem install metanorma-oiml-*.gem)
-
       - name: Generate site HTML (metanorma-document) and OIML STS outputs
+        env:
+          BUNDLE_GEMFILE: Gemfile.renderer
         run: |
+          bundle install
           doc=_site/documents/sts-guidelines
-          # bypass the image's bundler shim; gems were installed system-wide
-          env -u BUNDLE_GEMFILE -u RUBYOPT ruby -e \
-            'gem "metanorma-document"; require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+          bundle exec ruby -e \
+            'require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
             "$doc/document.presentation.xml" "$doc/document.html"
-          env -u BUNDLE_GEMFILE -u RUBYOPT oiml-sts convert \
+          bundle exec oiml-sts convert \
             "$doc/document.presentation.xml" "$doc/document.sts.xml"
-          env -u BUNDLE_GEMFILE -u RUBYOPT ruby -r metanorma/oiml/sts -e \
+          bundle exec ruby -r metanorma/oiml/sts -e \
             'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0]), renderer: :xslt))' \
             "$doc/document.sts.xml" "$doc/document.sts.html"
-          GEMDIR=$(env -u BUNDLE_GEMFILE -u RUBYOPT ruby -e \
-            'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
+          GEMDIR=$(bundle exec ruby -e 'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
           cp "$GEMDIR/vendor/xslt/oiml-logo.svg" "$doc/"
           ls -la "$doc/"
 

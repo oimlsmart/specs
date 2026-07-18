@@ -1,0 +1,24 @@
+# Renderer toolchain for the site HTML (metanorma-document) and the OIML STS
+# outputs (metanorma-oiml). Kept separate from the compile Gemfile because the
+# pubid 2.0 / relaton prerelease line cannot coexist with the released
+# metanorma-cli stack (metanorma-standoc pins relaton-cli ~> 2.1.0, and
+# RubyGems never satisfies a non-prerelease requirement with a prerelease).
+#
+# Usage:
+#   BUNDLE_GEMFILE=Gemfile.renderer bundle install
+#   BUNDLE_GEMFILE=Gemfile.renderer bundle exec ruby -e '...'
+#   BUNDLE_GEMFILE=Gemfile.renderer bundle exec oiml-sts convert ...
+
+source "https://rubygems.org"
+
+# >= 0.2.11 renders the document body; earlier releases emit an empty page
+gem "metanorma-document", "~> 0.2.12"
+gem "metanorma-oiml", github: "metanorma/metanorma-oiml"
+
+# required at load time by metanorma-document but only declared transitively
+gem "mml"
+
+# pubid 2.0 / relaton prerelease line (explicit pre-segment requirements are
+# what allow Bundler to select prereleases)
+gem "pubid", "~> 2.0.0.pre.alpha"
+gem "relaton-bib", "2.2.0.pre.alpha.1"
