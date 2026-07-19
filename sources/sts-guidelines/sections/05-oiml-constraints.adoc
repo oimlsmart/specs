@@ -32,9 +32,14 @@ self-references inside an OIML publication.
 references at parse time; permitting `<self-uri>` inside `<self-xref>`
 introduces two resolution paths and causes ambiguous link targets.
 
-=== Every `<std>` shall carry `<title>` and `<pub-date>`
+=== Every `<std>` shall carry `<title>` and a dated designation
 
-Every `<std>` element shall contain both `<title>` and `<pub-date>`.
+Every `<std>` element shall contain a `<title>`, and every `<std-ref>` within
+it shall declare datedness via `@type` (`dated` when the designation embeds
+the publication year, e.g. `ISO 15223-1:2012`; `undated` otherwise). The
+publication year rides inside the dated `<std-ref>` designation — the base
+tag suite does not permit `<pub-date>` inside `<std>`.
 
-*Why:* OIML bibliographic tooling renders citations by concatenating `<title>`
-and `<pub-date>`; omitting either element produces a malformed citation.
+*Why:* OIML bibliographic tooling renders citations by concatenating
+`<std-ref>` and `<title>`; omitting either the title or the datedness marker
+produces a malformed citation.

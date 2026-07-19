@@ -24,7 +24,11 @@ reference:
                    terminology-model="tbx"/>
   <front>
     <iso-meta>
-      <doc-identifier>OIML R 7:1979</doc-identifier>
+      <std-ident>
+        <originator>OIML</originator>
+        <doc-type>r</doc-type>
+        <doc-number>7</doc-number>
+      </std-ident>
       <std-title-group>
         <title>Clinical thermometers (mercury-in-glass, with maximum device)</title>
       </std-title-group>
@@ -56,16 +60,10 @@ reference:
   <back>
     <ref-list content-type="bibliography">
       <ref>
-        <element-citation>
-          <std>
-            <std-ident>
-              <std-org>ISO</std-org>
-              <doc-identifier>ANSI/NISO Z39.102-2022</doc-identifier>
-            </std-ident>
-            <title>STS: Standards Tag Suite (Version 1.2)</title>
-            <pub-date><year>2022</year></pub-date>
-          </std>
-        </element-citation>
+        <std type="dated">
+          <std-ref type="dated">ANSI/NISO Z39.102-2022</std-ref>,
+          <title>STS: Standards Tag Suite (Version 1.2)</title>
+        </std>
       </ref>
     </ref-list>
   </back>
@@ -78,7 +76,8 @@ This example demonstrates:
 * The required OIML metadata fields (identifier, title, pub-date,
   permissions).
 * `stage-code="60"` indicating a published document.
-* The OIML constraint of `<title>` + `<pub-date>` on `<std>` is satisfied.
+* The OIML constraint of `<title>` plus a dated `<std-ref>` designation on
+  `<std>` is satisfied.
 * The OIML document-series letter (`R`) carried in a `<custom-meta>`.
 
 === Bilingual OIML publication
@@ -90,14 +89,22 @@ is repeated with the appropriate `@xml:lang`:
 ----
 <front>
   <iso-meta xml:lang="en">
-    <doc-identifier>OIML R 7:1979</doc-identifier>
+    <std-ident>
+      <originator>OIML</originator>
+      <doc-type>r</doc-type>
+      <doc-number>7</doc-number>
+    </std-ident>
     <std-title-group>
       <title>Clinical thermometers (mercury-in-glass, with maximum device)</title>
     </std-title-group>
     ...
   </iso-meta>
   <iso-meta xml:lang="fr">
-    <doc-identifier>OIML R 7:1979</doc-identifier>
+    <std-ident>
+      <originator>OIML</originator>
+      <doc-type>r</doc-type>
+      <doc-number>7</doc-number>
+    </std-ident>
     <std-title-group>
       <title>Thermomètres médicaux (à mercure, en verre, avec dispositif à maximum)</title>
     </std-title-group>

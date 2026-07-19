@@ -9,10 +9,14 @@ child elements for OIML publications.
 |===
 | Element | Required? | OIML convention
 
-| `<doc-identifier>`
+| `<std-ident>`
 | Required
-| The OIML identifier (e.g., `OIML R 7:1979`, `OIML B 6-2:2024`,
-  `OIML X 999:2026`).
+| The OIML identifier, decomposed per NISO STS:
+  `<originator>OIML</originator>`, `<doc-type>` (the document-series
+  letter, lowercase: `r`, `b`, `x`, ...), `<doc-number>`, and
+  `<part-number>` where applicable (e.g., `OIML B 6-2:2024` maps to
+  doc-number `6`, part-number `2`). The publication year is carried by
+  `<pub-date>`, not repeated here.
 
 | `<std-title-group>`
 | Required

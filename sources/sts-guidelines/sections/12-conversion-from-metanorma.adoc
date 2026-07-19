@@ -106,7 +106,7 @@ The converter maps the major Metanorma constructs as follows:
 
 | Metadata: `<title>`, `<docidentifier>`, `<date>`, `<contributor>`,
   `<copyright>`, `<edition>`, `<language>`, `<status>`
-| `<iso-meta>` children: `<std-title-group><title>`, `<doc-identifier>`,
+| `<iso-meta>` children: `<std-title-group><title>`, `<std-ident>`,
   `<pub-date>`, `<contrib-group>`, `<permissions>`, `<edition>`, etc.
 |
 |===

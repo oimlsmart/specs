@@ -19,18 +19,21 @@ element, see the Tag Library entry linked from the element name.
 | Header metadata block. OIML uses `<iso-meta>` for compatibility with the
   wider NISO STS ecosystem.
 
-| `<doc-identifier>`
-| Contains the OIML identifier (e.g. `OIML R 7:1979`).
+| `<std-ident>`
+| The OIML identifier, decomposed: `<originator>OIML</originator>` plus
+  `<doc-type>` (series letter), `<doc-number>`, and `<part-number>` where
+  applicable (e.g. `OIML R 7:1979` → doc-type `r`, doc-number `7`).
 
 | `<std>`
-| Bibliographic reference to a standard. OIML requires `<title>` and
-  `<pub-date>` -- see <<_oiml_constraints>>.
+| Bibliographic reference to a standard. OIML requires `<title>` and a
+  dated or undated `<std-ref>` designation -- see <<_oiml_constraints>>.
 
 | `<title>`
 | Required on `<std>`; primary title of a document or section.
 
-| `<pub-date>`
-| Required on `<std>`; publication date.
+| `<std-ref>`
+| Required on `<std>`; the standard's designation, with `@type="dated"`
+  when it embeds the publication year and `@type="undated"` otherwise.
 
 | `<permission>`
 | Required on reused content -- see <<_oiml_constraints>>.
