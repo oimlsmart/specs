@@ -18,19 +18,17 @@ Encoded as a `<ref-list>` with `@content-type="bibliography"` in `<back>`.
 References to other standards use the `<std>` element inside the citation.
 OIML places the following constraints over base NISO STS:
 
-* Every `<std>` shall carry both `<title>` and `<pub-date>`. See
+* Every `<std>` shall carry a `<title>`, and every `<std-ref>` within it
+  shall declare datedness via `@type`. See
   <<_oiml_constraints>>.
 * `<std>` may carry `@use-type` to indicate whether the reference is dated,
   undated, or qualified (NISO STS 1.2 addition).
 
 === Citing OIML's own publications
 
-When an OIML publication cites another OIML publication, the `<std>` element's
-`<std-ident>` child carries:
-
-* `<std-org>` with content `OIML`.
-* `<std-id>` with the OIML identifier (e.g., `OIML R 7:1979`).
-* `<doc-identifier>` mirroring the same.
+When an OIML publication cites another OIML publication, the `<std>` element
+carries the OIML designation in a `<std-ref>` with `@type="dated"` (e.g.,
+`OIML R 7:1979`), followed by the publication's `<title>`.
 
 [NOTE]
 ====
