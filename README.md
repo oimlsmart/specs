@@ -49,8 +49,8 @@ require "metanorma/oiml/sts"
 # Convert presentation XML string to STS XML
 sts_xml = Metanorma::Oiml::Sts.convert(presentation_xml_string)
 
-# Render STS XML to HTML
-sts_html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml, renderer: :xslt)
+# Render STS XML to HTML (Liquid-based, OIML-branded, self-contained)
+sts_html = Metanorma::Oiml::Sts::HtmlRenderer.render(sts_xml)
 ```
 
 ### CLI
@@ -63,6 +63,7 @@ oiml-sts convert sources/sts-guidelines/document.presentation.xml output.sts.xml
 
 ### STS HTML Rendering
 
-The XSLT renderer (`vendor/xslt/oiml-sts2html.xsl`) converts STS XML to
-semantic HTML with OIML-branded styling. The `oiml-logo.svg` must be in
-the same directory as the output HTML for the logo to display.
+The Liquid renderer converts STS XML to a self-contained branded HTML
+page (inline CSS and logo, no external assets). Templates and the
+stylesheet can be overridden without code changes:
+`HtmlRenderer::Ruby.new(templates_dir:, assets_dir:)`.

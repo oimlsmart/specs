@@ -95,10 +95,8 @@ jobs:
           bundle exec oiml-sts convert \
             "$doc/document.presentation.xml" "$doc/document.sts.xml"
           bundle exec ruby -r metanorma/oiml/sts -e \
-            'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0]), renderer: :xslt))' \
+            'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0])))' \
             "$doc/document.sts.xml" "$doc/document.sts.html"
-          GEMDIR=$(bundle exec ruby -e 'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
-          cp "$GEMDIR/vendor/xslt/oiml-logo.svg" "$doc/"
           ls -la "$doc/"
 
       - name: Install themed site index
