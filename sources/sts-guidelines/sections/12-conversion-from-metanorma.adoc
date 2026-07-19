@@ -122,4 +122,5 @@ The OIML document-type letter (R, B, D, G, E, X) is encoded as a
 The output OIML NISO STS XML SHALL satisfy the constraints in
 <<_oiml_constraints>>. The converter SHALL emit `<permission>` on any reused
 content marked in the source, SHALL NOT emit `<self-uri>` inside
-`<self-xref>`, and SHALL emit `<title>` and `<pub-date>` on every `<std>`.
+`<self-xref>`, and SHALL emit `<title>` and a dated or undated `<std-ref>`
+designation on every `<std>`.
