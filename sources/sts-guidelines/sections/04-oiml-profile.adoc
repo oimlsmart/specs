@@ -50,7 +50,8 @@ policy.
 | `<self-uri>` forbidden inside `<self-xref>`. See <<_oiml_constraints>>.
 
 | Constraint over base (3 of 3)
-| `<title>` and `<pub-date>` required on every `<std>`. See
+| `<title>` and a dated or undated `<std-ref>` designation required on
+  every `<std>`. See
   <<_oiml_constraints>>.
 |===
 
