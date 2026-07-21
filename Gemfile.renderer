@@ -12,8 +12,10 @@
 
 source "https://rubygems.org"
 
-# >= 0.4.0 renders the document body and ships SourcecodeBody#decoded_content
-gem "metanorma-document", "~> 0.4.0"
+# metanorma-document >= 0.5.0 ships Theme.register_themes_dir (used by
+# metanorma-oiml's HTML flavor registration) and the TermNum heading
+# markup that the parity validator matches against.
+gem "metanorma-document", ">= 0.5.0"
 # path source (not git): clone first —
 #   git clone --depth 1 https://github.com/metanorma/metanorma-oiml vendor/metanorma-oiml
 gem "metanorma-oiml", path: "vendor/metanorma-oiml"
