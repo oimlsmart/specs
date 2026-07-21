@@ -90,15 +90,13 @@ jobs:
         run: |
           doc=_site/documents/sts-guidelines
           bundle exec ruby -e \
-            'require "metanorma/document"; doc = Metanorma::OimlDocument::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+            'require "metanorma/document"; require "metanorma/oiml/document"; doc = Metanorma::Oiml::Document::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
             "$doc/document.presentation.xml" "$doc/document.html"
           bundle exec oiml-sts convert \
             "$doc/document.presentation.xml" "$doc/document.sts.xml"
           bundle exec ruby -r metanorma/oiml/sts -e \
-            'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0]), renderer: :xslt))' \
+            'File.write(ARGV[1], Metanorma::Oiml::Sts::HtmlRenderer.render(File.read(ARGV[0])))' \
             "$doc/document.sts.xml" "$doc/document.sts.html"
-          GEMDIR=$(bundle exec ruby -e 'puts Gem::Specification.find_by_name("metanorma-oiml").gem_dir')
-          cp "$GEMDIR/vendor/xslt/oiml-logo.svg" "$doc/"
           ls -la "$doc/"
 
       - name: Install themed site index
