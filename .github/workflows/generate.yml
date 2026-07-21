@@ -90,7 +90,7 @@ jobs:
         run: |
           doc=_site/documents/sts-guidelines
           bundle exec ruby -e \
-            'require "metanorma/document"; require "metanorma/oiml/document"; doc = Metanorma::Oiml::Document::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
+            'require "metanorma/document"; require "metanorma/oiml/html"; doc = Metanorma::Oiml::Document::Root.from_xml(File.read(ARGV[0])); File.write(ARGV[1], Metanorma::Html::Generator.generate(doc))' \
             "$doc/document.presentation.xml" "$doc/document.html"
           bundle exec oiml-sts convert \
             "$doc/document.presentation.xml" "$doc/document.sts.xml"
