@@ -102,6 +102,29 @@ jobs:
       - name: Install themed site index
         run: cp site/index.html _site/index.html
 
+      - name: Checkout the shell package (the chrome SSOT)
+        uses: actions/checkout@v4
+        with:
+          repository: oimlsmart/site-shell
+          path: vendor/site-shell
+
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: Build the chrome export
+        run: |
+          npm --prefix vendor/site-shell/test/fixture ci
+          npm --prefix vendor/site-shell/test/fixture run build
+          node vendor/site-shell/scripts/export-chrome.mjs
+
+      - name: Apply the federation chrome
+        # The documents/ reader pages stay unchromed: the metanorma
+        # reader carries its own fixed chrome, which overlaps the
+        # injected header (TODO.fix/10 — the overlap is documented).
+        run: node vendor/site-shell/scripts/apply-chrome.mjs . _site /specs documents
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
